@@ -1,7 +1,9 @@
-.App {
- background-color: #ECF2FF;
+.hello {
+  color: red;
 }
-
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+  color: red;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

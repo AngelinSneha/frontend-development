@@ -22,33 +22,103 @@ import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { styled, alpha } from "@mui/material/styles";
 const { sideNavValues } = helper;
-export default function SideNav() {
+
+export default function SideNav({ value, handleChange }) {
+  function a11yProps(index) {
+    return {
+      id: `vertical-tab vertical-tab-${index}`,
+      "aria-controls": `vertical-tabpanel-${index}`,
+    };
+  }
+
   return (
     <>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          p: 1,
-          m: 1,
-          borderRadius: 1,
+          bgcolor: "background.paper",
+          m: 2,
+          marginRight: 1,
+          maxWidth: "250px",
         }}
       >
         <Box
-          component="img"
           sx={{
-            height: 50,
-            textAlign: "left",
+            display: "flex",
+            flexDirection: "row",
+            p: 1,
+            m: 1,
+            borderRadius: 1,
           }}
-          alt="Your logo."
-          src="https://www.atinks.com/wp-content/uploads/2017/10/A.T-inks-logo-600-DPI-1-e1545645137933.png"
-        />
+        >
+          <Box
+            component="img"
+            sx={{
+              height: 50,
+              textAlign: "left",
+            }}
+            alt="Your logo."
+            src="https://www.atinks.com/wp-content/uploads/2017/10/A.T-inks-logo-600-DPI-1-e1545645137933.png"
+          />
 
-        <Typography sx={{ p: 2 }} component="h3">
-          A.T Links
-        </Typography>
+          <Typography sx={{ p: 2 }} component="h3">
+            A.T Links
+          </Typography>
+        </Box>
+        <Tabs
+          orientation="vertical"
+          variant="scrollable"
+          value={value}
+          onChange={handleChange}
+          aria-label="Vertical tabs example"
+          sx={{ marginRight: 1, textAlign: "left" }}
+        >
+          {sideNavValues.map((value, i) => (
+            <Tab
+              icon={value.icon}
+              iconPosition="start"
+              label={value.name}
+              {...a11yProps(i)}
+            />
+          ))}
+        </Tabs>
+        <Card variant="outlined" sx={{ textAlign: "center", m: 2 }}>
+          <CardContent>
+            <Box>
+              <ContactSupportIcon
+                color="disabled"
+                fontSize="large"
+                sx={{ paddingRight: 1 }}
+              />
+              <Typography variant="h6" component="div">
+                Need Help?
+              </Typography>
+              <Typography
+                component="body1"
+                sx={{ fontSize: "12px", lineHeight: 0 }}
+              >
+                our support team is at your dispossal
+              </Typography>
+            </Box>
+            <Button
+              style={{
+                backgroundColor: "black",
+                color: "white",
+                marginTop: "16px",
+                borderRadius: "none",
+                textTransform: "none",
+              }}
+              size="small"
+              variant="contained"
+            >
+              Get Help
+            </Button>
+          </CardContent>
+        </Card>
       </Box>
+      {/* 
       <List sx={{ color: "grey" }}>
         {sideNavValues.map((obj) => (
           <ListItem key={obj.name} disablePadding>
@@ -91,7 +161,7 @@ export default function SideNav() {
             Get Help
           </Button>
         </CardContent>
-      </Card>
+      </Card> */}
     </>
   );
 }

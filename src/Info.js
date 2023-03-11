@@ -20,6 +20,7 @@ import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import helper from "./helper";
+import ContactTab from "./ContactTab";
 
 const { contactInfo } = helper;
 
@@ -27,17 +28,21 @@ export default function Info() {
   const [contactDetails, setContactDetails] = React.useState(contactInfo);
   const [showModal, setShowModal] = React.useState(false);
 
-  const toggleDrawer = (open) => (event) => {
-    if (
-      event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
+  const [editValue, setEditValue] = React.useState(-1);
 
+  function toggleDrawer(open) {
     setShowModal(open);
-  };
+  }
+  function onCloseModal() {
+    toggleDrawer(false);
+    setEditValue(-1);
+  }
+  function deleteDetails(index) {
+    if (index > -1) {
+      contactDetails.splice(index, 1);
+      setContactDetails([...contactDetails]);
+    }
+  }
 
   return (
     <Grid
@@ -57,7 +62,7 @@ export default function Info() {
                 <IconButton
                   color="error"
                   sx={{ float: "right" }}
-                  onClick={toggleDrawer(true)}
+                  onClick={() => toggleDrawer(true)}
                   aria-label="delete"
                 >
                   <EditIcon />
@@ -196,11 +201,17 @@ export default function Info() {
         </Card>
       </Grid>
       {console.log("contactDetails info", contactDetails)}
-      <Swipeable
-        showModal={showModal}
-        toggleDrawer={toggleDrawer}
-        contactDetails={contactDetails}
-      />
+      <Swipeable showModal={showModal} onCloseModal={onCloseModal}>
+        <ContactTab
+          showModal={showModal}
+          toggleDrawer={toggleDrawer}
+          contactDetails={contactDetails}
+          setContactDetails={setContactDetails}
+          deleteDetails={deleteDetails}
+          editValue={editValue}
+          setEditValue={setEditValue}
+        />
+      </Swipeable>
     </Grid>
   );
 }
