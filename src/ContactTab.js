@@ -39,6 +39,7 @@ export default function ContactTab({
   deleteDetails,
   editValue,
   setEditValue = () => {},
+  viewContacts = false,
 }) {
   return (
     <Box
@@ -49,12 +50,11 @@ export default function ContactTab({
       }}
       role="presentation"
     >
-      <Typography variant="h5">
+      <Typography variant="h5" sx={{ fontWeight: 600 }}>
         <ArrowBackIcon
           sx={{ paddingRight: 1, cursor: "pointer" }}
           onClick={() => {
             if (editValue !== -1) {
-              // console
               setEditValue(-1);
             } else {
               setEditValue(-1);
@@ -75,62 +75,76 @@ export default function ContactTab({
               <Card variant="outlined" sx={{ marginBottom: 3, marginTop: 2 }}>
                 <CardContent>
                   <Box>
-                    <Typography variant="h6" component="div">
-                      <ContactsIcon color="disabled" sx={{ marginRight: 1 }} />
+                    <Typography
+                      variant="h6"
+                      component="div"
+                      sx={{ fontWeight: 600 }}
+                    >
+                      <ContactsIcon
+                        color="disabled"
+                        fontSize="small"
+                        sx={{ paddingRight: 1, marginTop: 1 }}
+                      />
                       {details.team}
-                      <IconButton
-                        color="error"
-                        sx={{ float: "right" }}
-                        onClick={() => setEditValue(i)}
-                        aria-label="edit"
-                      >
-                        <EditIcon />
-                      </IconButton>
-                      <IconButton
-                        color="error"
-                        sx={{ float: "right" }}
-                        onClick={() => deleteDetails(i)}
-                        aria-label="delete"
-                      >
-                        <DeleteIcon />
-                      </IconButton>
+                      {!viewContacts && (
+                        <>
+                          <IconButton
+                            color="error"
+                            sx={{ float: "right" }}
+                            onClick={() => setEditValue(i)}
+                            aria-label="edit"
+                          >
+                            <EditIcon fontSize="small" />
+                          </IconButton>
+                          <IconButton
+                            color="error"
+                            sx={{ float: "right" }}
+                            onClick={() => deleteDetails(i)}
+                            aria-label="delete"
+                          >
+                            <DeleteIcon />
+                          </IconButton>
+                        </>
+                      )}
                     </Typography>
                   </Box>
-                  <Box sx={{ marginTop: 1 }}>
+                  <Box sx={{ marginTop: 3 }}>
                     <EmailIcon
                       color="disabled"
                       fontSize="tiny"
-                      sx={{ marginRight: 1 }}
+                      sx={{ paddingRight: 1 }}
                     />
                     {details.email.join("/ \n")}
                   </Box>
-                  <Box sx={{ marginTop: 1 }}>
+                  <Box sx={{ marginTop: 3 }}>
                     <CallIcon
                       color="disabled"
                       fontSize="tiny"
-                      sx={{ marginRight: 1 }}
+                      sx={{ paddingRight: 1 }}
                     />
                     {details.phone.join("/ \n")}
                   </Box>
                 </CardContent>
               </Card>
             ))}
-          <Button
-            variant="contained"
-            color="error"
-            sx={{
-              bottom: 16,
-              position: "sticky",
-              width: "100%",
-              textTransform: "none",
-            }}
-            onClick={() => {
-              setEditValue(-1);
-              toggleDrawer(false);
-            }}
-          >
-            Save
-          </Button>
+          {!viewContacts && (
+            <Button
+              variant="contained"
+              color="error"
+              sx={{
+                bottom: 16,
+                position: "sticky",
+                width: "100%",
+                textTransform: "none",
+              }}
+              onClick={() => {
+                setEditValue(-1);
+                toggleDrawer(false);
+              }}
+            >
+              Save
+            </Button>
+          )}
         </Box>
       ) : (
         <ContactForm

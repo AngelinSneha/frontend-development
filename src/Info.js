@@ -21,13 +21,14 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import helper from "./helper";
 import ContactTab from "./ContactTab";
+import { Avatar } from "@mui/material";
 
 const { contactInfo } = helper;
 
 export default function Info() {
   const [contactDetails, setContactDetails] = React.useState(contactInfo);
   const [showModal, setShowModal] = React.useState(false);
-
+  const [viewContacts, setViewContacts] = React.useState(false);
   const [editValue, setEditValue] = React.useState(-1);
 
   function toggleDrawer(open) {
@@ -36,6 +37,7 @@ export default function Info() {
   function onCloseModal() {
     toggleDrawer(false);
     setEditValue(-1);
+    setViewContacts(false);
   }
   function deleteDetails(index) {
     if (index > -1) {
@@ -47,17 +49,21 @@ export default function Info() {
   return (
     <Grid
       container
-      spacing={1}
+      spacing={3}
       direction="row"
       justify="flex-start"
       alignItems="flex-start"
     >
       <Grid item xs={12} sm={6} md={4}>
-        <Card variant="outlined">
+        <Card variant="outlined" sx={{ minHeight: "180px" }}>
           <CardContent>
             <Box>
-              <Typography variant="h6" component="div">
-                <ContactsIcon color="disabled" sx={{ paddingRight: 1 }} />
+              <Typography variant="h6" component="div" sx={{ fontWeight: 600 }}>
+                <ContactsIcon
+                  color="disabled"
+                  fontSize="small"
+                  sx={{ paddingRight: 1, marginTop: 1 }}
+                />
                 Contact
                 <IconButton
                   color="error"
@@ -65,53 +71,89 @@ export default function Info() {
                   onClick={() => toggleDrawer(true)}
                   aria-label="delete"
                 >
-                  <EditIcon />
+                  <EditIcon fontSize="small" />
                 </IconButton>
               </Typography>
             </Box>
-            <Box sx={{ marginTop: 1 }}>
-              <EmailIcon color="disabled" fontSize="tiny" />
-              {contactDetails[0].email.join("/ \n")}
+            <Box
+              sx={{
+                marginTop: 3,
+                display: "flex",
+                justifyContent: "space-around",
+              }}
+            >
+              <Box>
+                <EmailIcon
+                  color="disabled"
+                  fontSize="tiny"
+                  sx={{ paddingRight: 1 }}
+                />
+                {contactDetails[0].email.join(" / \n")}
+              </Box>
+              <Avatar
+                sx={{
+                  width: 24,
+                  height: 24,
+                  color: "#990000",
+                  backgroundColor: "#efdbdb",
+                  fontSize: "10px",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  toggleDrawer(true);
+                  setViewContacts(true);
+                }}
+              >
+                +{contactDetails.length - 1}
+              </Avatar>
             </Box>
             <Box sx={{ marginTop: 1 }}>
-              <CallIcon color="disabled" fontSize="tiny" />
+              <CallIcon
+                color="disabled"
+                fontSize="tiny"
+                sx={{ paddingRight: 1 }}
+              />
               {contactDetails[0].phone.join("/ \n")}
             </Box>
           </CardContent>
         </Card>
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
-        <Card variant="outlined" sx={{ minWidth: "30px" }}>
+        <Card variant="outlined" sx={{ minWidth: "30px", minHeight: "180px" }}>
           <CardContent>
             <Box>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{ paddingBottom: 1 }}
-              >
-                <LocationOnIcon color="disabled" sx={{ paddingRight: 1 }} />
+              <Typography variant="h6" component="div" sx={{ fontWeight: 600 }}>
+                <LocationOnIcon
+                  color="disabled"
+                  fontSize="small"
+                  sx={{ paddingRight: 1, marginTop: 1 }}
+                />
                 Address
                 <IconButton
+                  color="error"
                   sx={{ float: "right" }}
                   aria-label="delete"
-                  color="error"
                 >
-                  <EditIcon />
+                  <EditIcon fontSize="small" />
                 </IconButton>
               </Typography>
             </Box>
-            <Box sx={{ m: 1 }}>
+            <Box sx={{ margin: "16px 8px" }}>
               C-1 / 351 / 4, GIDC Makarpura, Vadodara - 390010, Gujarat, India.
             </Box>
           </CardContent>
         </Card>
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
-        <Card variant="outlined">
+        <Card variant="outlined" sx={{ minHeight: "180px" }}>
           <CardContent>
             <Box>
-              <Typography variant="h6" component="div">
-                <WorkHistoryIcon color="disabled" sx={{ paddingRight: 1 }} />
+              <Typography variant="h6" component="div" sx={{ fontWeight: 600 }}>
+                <WorkHistoryIcon
+                  color="disabled"
+                  fontSize="small"
+                  sx={{ paddingRight: 1, marginTop: 1 }}
+                />
                 Hours & Operations
                 <IconButton
                   sx={{ float: "right" }}
@@ -122,16 +164,22 @@ export default function Info() {
                 </IconButton>
               </Typography>
             </Box>
-            <Box sx={{ m: 1 }}>Monday to Friday - 09:00 Am to 06:00 Pm</Box>
+            <Box sx={{ margin: "16px 8px" }}>
+              Monday to Friday - 09:00 Am to 06:00 Pm
+            </Box>
           </CardContent>
         </Card>
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
-        <Card variant="outlined">
+        <Card variant="outlined" sx={{ minHeight: "180px" }}>
           <CardContent>
             <Box>
-              <Typography variant="h6" component="div">
-                <InsertLinkIcon color="disabled" sx={{ paddingRight: 1 }} />
+              <Typography variant="h6" component="div" sx={{ fontWeight: 600 }}>
+                <InsertLinkIcon
+                  color="disabled"
+                  fontSize="small"
+                  sx={{ paddingRight: 1, marginTop: 1 }}
+                />
                 Social Media & Links
                 <IconButton
                   sx={{ float: "right" }}
@@ -147,30 +195,28 @@ export default function Info() {
                 display: "flex",
                 justifyContent: "space-around",
                 p: 1,
-                m: 2,
-                bgcolor: "background.paper",
-                borderRadius: 1,
+                margin: "16px 8px",
               }}
             >
-              <Box>
+              <Box sx={{ textAlign: "center" }}>
                 <LanguageIcon color="disabled" />
                 <Typography variant="subtitle1" sx={{ fontSize: 12 }}>
                   Website
                 </Typography>
               </Box>
-              <Box>
+              <Box sx={{ textAlign: "center" }}>
                 <InstagramIcon color="disabled" />
                 <Typography variant="subtitle1" sx={{ fontSize: 12 }}>
                   Instagram
                 </Typography>
               </Box>
-              <Box>
+              <Box sx={{ textAlign: "center" }}>
                 <FacebookRoundedIcon color="disabled" />
                 <Typography variant="subtitle1" sx={{ fontSize: 12 }}>
                   Facebook
                 </Typography>
               </Box>
-              <Box>
+              <Box sx={{ textAlign: "center" }}>
                 <TwitterIcon color="disabled" />
                 <Typography variant="subtitle1" sx={{ fontSize: 12 }}>
                   Twitter
@@ -181,11 +227,15 @@ export default function Info() {
         </Card>
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
-        <Card variant="outlined">
+        <Card variant="outlined" sx={{ minHeight: "180px" }}>
           <CardContent>
             <Box>
-              <Typography variant="h6" component="div">
-                <FormatQuoteIcon color="disabled" sx={{ paddingRight: 1 }} />
+              <Typography variant="h6" component="div" sx={{ fontWeight: 600 }}>
+                <FormatQuoteIcon
+                  color="disabled"
+                  fontSize="small"
+                  sx={{ paddingRight: 1, marginTop: 1 }}
+                />
                 Statements
                 <IconButton
                   sx={{ float: "right" }}
@@ -196,7 +246,27 @@ export default function Info() {
                 </IconButton>
               </Typography>
             </Box>
-            <Box sx={{ m: 1 }}>You think it we int it.</Box>
+            <Box
+              sx={{
+                margin: "36px 8px",
+                display: "flex",
+                justifyContent: "space-around",
+              }}
+            >
+              <Box sx={{}}>You think it we int it. </Box>
+              <Avatar
+                sx={{
+                  width: 24,
+                  height: 24,
+                  color: "#990000",
+                  backgroundColor: "#efdbdb",
+                  fontSize: "10px",
+                  cursor: "pointer",
+                }}
+              >
+                +1
+              </Avatar>
+            </Box>
           </CardContent>
         </Card>
       </Grid>
@@ -209,6 +279,7 @@ export default function Info() {
           setContactDetails={setContactDetails}
           deleteDetails={deleteDetails}
           editValue={editValue}
+          viewContacts={viewContacts}
           setEditValue={setEditValue}
         />
       </Swipeable>

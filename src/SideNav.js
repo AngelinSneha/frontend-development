@@ -35,22 +35,52 @@ export default function SideNav({ value, handleChange }) {
   }
 
   return (
-    <>
+    <ThemeProvider
+      theme={createTheme({
+        palette: { primary: { main: "#d1005e" } },
+        components: {
+          MuiTabs: {
+            styleOverrides: {
+              indicator: {
+                backgroundColor: "white",
+              },
+            },
+          },
+          MuiTab: {
+            styleOverrides: {
+              root: {
+                minHeight: "60px",
+                justifyContent: "flex-start",
+                margin: "0 8px",
+                borderRadius: "5px",
+                "&.Mui-selected": {
+                  color: "#990000",
+                  backgroundColor: "#efdbdb",
+                },
+              },
+            },
+          },
+        },
+      })}
+    >
       <Box
         sx={{
           bgcolor: "background.paper",
-          m: 2,
-          marginRight: 1,
-          maxWidth: "250px",
+          margin: "24px 8px 16px 16px",
+          minWidth: "220px",
+          maxWidth: "220px",
+          borderRadius: "10px",
         }}
       >
         <Box
           sx={{
             display: "flex",
             flexDirection: "row",
+            // justifyContent: "center",
             p: 1,
             m: 1,
             borderRadius: 1,
+            textAlign: "center",
           }}
         >
           <Box
@@ -63,7 +93,7 @@ export default function SideNav({ value, handleChange }) {
             src="https://www.atinks.com/wp-content/uploads/2017/10/A.T-inks-logo-600-DPI-1-e1545645137933.png"
           />
 
-          <Typography sx={{ p: 2 }} component="h3">
+          <Typography sx={{ p: 2, fontWeight: 500 }} component="h2">
             A.T Links
           </Typography>
         </Box>
@@ -81,6 +111,7 @@ export default function SideNav({ value, handleChange }) {
               iconPosition="start"
               label={value.name}
               {...a11yProps(i)}
+              sx={{ textTransform: "none" }}
             />
           ))}
         </Tabs>
@@ -89,7 +120,7 @@ export default function SideNav({ value, handleChange }) {
             <Box>
               <ContactSupportIcon
                 color="disabled"
-                fontSize="large"
+                // fontSize="large"
                 sx={{ paddingRight: 1 }}
               />
               <Typography variant="h6" component="div">
@@ -162,6 +193,6 @@ export default function SideNav({ value, handleChange }) {
           </Button>
         </CardContent>
       </Card> */}
-    </>
+    </ThemeProvider>
   );
 }

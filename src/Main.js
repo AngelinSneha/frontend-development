@@ -31,7 +31,7 @@ function Item(props) {
       sx={{
         p: 1,
         m: 1,
-        bgcolor: "white",
+        bgcolor: "background.paper",
         color: (theme) =>
           theme.palette.mode === "dark" ? "grey.300" : "grey.800",
         border: "1px solid",
@@ -94,12 +94,12 @@ function a11yProps(index) {
 }
 
 export default function Main() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(6);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  console.log("value", value);
+
   return (
     <Box sx={{ flexGrow: 1, display: "flex", alignItems: "flex-start" }}>
       <SideNav value={value} handleChange={handleChange} />

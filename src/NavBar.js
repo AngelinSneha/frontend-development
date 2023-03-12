@@ -192,6 +192,7 @@ export default function NavBar() {
                 marginRight: "20px",
                 borderRadius: "none",
                 textTransform: "none",
+                width: "180px",
               }}
               size="small"
               variant="contained"

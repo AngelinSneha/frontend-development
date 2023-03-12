@@ -81,7 +81,7 @@ export default function ContactForm({
 
   return (
     <Box>
-      <Box sx={{ paddingTop: 4 }}>
+      <Box sx={{ marginTop: 5 }}>
         <InputLabel htmlFor="input-with-icon-adornment">Email ID</InputLabel>
         {getInputField(addemail, email, setEmail, "eg: salesteam@br.in")}
         <Button
@@ -100,7 +100,7 @@ export default function ContactForm({
           Add More
         </Button>
       </Box>
-      <Box sx={{ paddingTop: 4 }}>
+      <Box sx={{ paddingTop: 4, marginBottom: 4 }}>
         <InputLabel htmlFor="input-with-icon-adornment">
           Contact Number
         </InputLabel>

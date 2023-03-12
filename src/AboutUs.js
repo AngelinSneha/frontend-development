@@ -22,6 +22,7 @@ import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import Link from "@mui/material/Link";
 import { IconButton, InputBase, InputLabel, TextField } from "@mui/material";
 import Swipeable from "./Swipeable";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 export default function AboutUs() {
   const [companyInfo, setCompanyInfo] = React.useState(
@@ -49,142 +50,191 @@ export default function AboutUs() {
     };
   }
   return (
-    <Box sx={{ p: 2, bgcolor: "background.paper" }}>
-      <Typography variant="h4" component="h2">
-        About Us
-      </Typography>
+    <ThemeProvider
+      theme={createTheme({
+        // palette: { primary: { main: "#d1005e" } },
+        components: {
+          MuiTabs: {
+            styleOverrides: {
+              indicator: {
+                backgroundColor: "#990000",
+              },
+            },
+          },
+          MuiTab: {
+            styleOverrides: {
+              root: {
+                textTransform: "none",
+                "&.Mui-selected": {
+                  color: "black",
+                },
+              },
+            },
+          },
+        },
+      })}
+    >
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          p: 1,
-          m: 1,
-          borderRadius: 1,
+          p: 4,
+          bgcolor: "background.paper",
+          borderRadius: "10px",
         }}
       >
-        <Box
-          component="img"
-          sx={{
-            height: 50,
-            textAlign: "left",
-          }}
-          alt="Your logo."
-          src="https://www.atinks.com/wp-content/uploads/2017/10/A.T-inks-logo-600-DPI-1-e1545645137933.png"
-        />
-
-        <Typography sx={{ p: 2 }} component="h3">
-          A.T Links
+        <Typography variant="h5" component="h1" sx={{ p: 2, fontWeight: 600 }}>
+          About Us
         </Typography>
-        <VerifiedIcon
-          color={verifyCompany ? "success" : "disabled"}
-          sx={{ p: 2 }}
-        />
-        <Link
-          component="button"
-          variant="body2"
-          onClick={() => {
-            setVerifyCompany(true);
-          }}
-        >
-          Verify Company
-        </Link>
-      </Box>
-      <Box sx={{ p: 2 }} component="span" fontSize="small">
-        {companyInfo}
-      </Box>
-      <IconButton
-        color="error"
-        aria-label="delete"
-        onClick={() => toggleDrawer(true)}
-      >
-        <EditIcon />
-      </IconButton>
-      <Box>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="basic tabs example"
-          >
-            <Tab label="Info" {...a11yProps(0)} />
-            <Tab label="FAQ" {...a11yProps(1)} />
-            <Tab label="Complaints and Feedback" {...a11yProps(2)} />
-            <Tab label="Privacy Policy" {...a11yProps(4)} />
-            <Tab label="Terms & Conditions" {...a11yProps(5)} />
-          </Tabs>
-        </Box>
-        <TabPanel value={value} index={0}>
-          <Info />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          Item Two
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          Item Three
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-          Item Four
-        </TabPanel>
-        <TabPanel value={value} index={4}>
-          Item Five
-        </TabPanel>
-      </Box>
-      <Swipeable showModal={showModal} onCloseModal={onCloseModal}>
         <Box
           sx={{
-            width: 300,
-            p: 4,
-            height: "100%",
+            display: "flex",
+            flexDirection: "row",
+            p: 1,
+            margin: "24px 8px",
+            borderRadius: 1,
           }}
-          role="presentation"
         >
-          <Typography variant="h5">
-            <ArrowBackIcon
-              sx={{ paddingRight: 1, cursor: "pointer" }}
-              onClick={() => {
-                if (editValue !== -1) {
-                  // console
-                  setEditValue(-1);
-                } else {
-                  setEditValue(-1);
-                  toggleDrawer(false);
-                }
-              }}
-            />
-            Company Description
-          </Typography>
-          <Box sx={{ m: 2 }}>
-            <InputLabel htmlFor="input-with-icon-adornment">
-              Share more details about <br></br>the Company
-            </InputLabel>
-            <TextField
-              fullWidth
-              id="outlined-multiline-static"
-              multiline
-              rows={4}
-              variant="filled"
-              defaultValue={companyInfo}
-              onChange={(e) => (c = e.target.value)}
-            />
-          </Box>
-          <Button
-            variant="contained"
-            color="error"
+          <Box
+            component="img"
             sx={{
-              bottom: 16,
-              position: "sticky",
-              width: "100%",
-              textTransform: "none",
+              height: 50,
+              textAlign: "left",
             }}
-            onClick={() => {
-              setCompanyInfo(c);
-              toggleDrawer(false);
+            alt="Your logo."
+            src="https://www.atinks.com/wp-content/uploads/2017/10/A.T-inks-logo-600-DPI-1-e1545645137933.png"
+          />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              paddingLeft: "1em",
             }}
           >
-            Save
-          </Button>
+            <Typography
+              sx={{
+                fontWeight: 600,
+              }}
+              variant="h6"
+            >
+              A.T Links
+            </Typography>
+            <Typography sx={{ color: "grey" }} component="h3">
+              Digital Links
+            </Typography>
+          </Box>
+          <VerifiedIcon
+            color={verifyCompany ? "success" : "disabled"}
+            sx={{ paddingLeft: 3 }}
+          />
+          {!verifyCompany && (
+            <Link
+              component="button"
+              variant="body2"
+              sx={{ position: "absolute", left: "530px" }}
+              onClick={() => {
+                setVerifyCompany(true);
+              }}
+            >
+              Verify Company
+            </Link>
+          )}
         </Box>
-      </Swipeable>
-    </Box>
+        <Box sx={{ padding: "16px" }} component="span">
+          {companyInfo}
+        </Box>
+        <IconButton
+          color="error"
+          aria-label="delete"
+          onClick={() => toggleDrawer(true)}
+        >
+          <EditIcon fontSize="small" />
+        </IconButton>
+        <Box sx={{ marginTop: 3 }}>
+          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              aria-label="basic tabs example"
+            >
+              <Tab label="Info" {...a11yProps(0)} />
+              <Tab label="FAQ" {...a11yProps(1)} />
+              <Tab label="Complaints and Feedback" {...a11yProps(2)} />
+              <Tab label="Privacy Policy" {...a11yProps(4)} />
+              <Tab label="Terms & Conditions" {...a11yProps(5)} />
+            </Tabs>
+          </Box>
+          <TabPanel value={value} index={0}>
+            <Info />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            Item Two
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            Item Three
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            Item Four
+          </TabPanel>
+          <TabPanel value={value} index={4}>
+            Item Five
+          </TabPanel>
+        </Box>
+        <Swipeable showModal={showModal} onCloseModal={onCloseModal}>
+          <Box
+            sx={{
+              width: 300,
+              p: 4,
+              height: "100%",
+            }}
+            role="presentation"
+          >
+            <Typography variant="h5">
+              <ArrowBackIcon
+                sx={{ paddingRight: 1, cursor: "pointer" }}
+                onClick={() => {
+                  if (editValue !== -1) {
+                    // console
+                    setEditValue(-1);
+                  } else {
+                    setEditValue(-1);
+                    toggleDrawer(false);
+                  }
+                }}
+              />
+              Company Description
+            </Typography>
+            <Box sx={{ margin: "40px 16px" }}>
+              <InputLabel htmlFor="input-with-icon-adornment">
+                Share more details about <br></br>the Company
+              </InputLabel>
+              <TextField
+                fullWidth
+                id="outlined-multiline-static"
+                multiline
+                rows={4}
+                variant="filled"
+                defaultValue={companyInfo}
+                onChange={(e) => (c = e.target.value)}
+              />
+            </Box>
+            <Button
+              variant="contained"
+              color="error"
+              sx={{
+                bottom: 16,
+                position: "sticky",
+                width: "100%",
+                textTransform: "none",
+              }}
+              onClick={() => {
+                setCompanyInfo(c);
+                toggleDrawer(false);
+              }}
+            >
+              Save
+            </Button>
+          </Box>
+        </Swipeable>
+      </Box>
+    </ThemeProvider>
   );
 }
