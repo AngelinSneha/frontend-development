@@ -11,7 +11,6 @@ const Search = styled("div")(({ theme }) => ({
   backgroundColor: "#ECF2FF",
   marginRight: theme.spacing(2),
   marginLeft: theme.spacing(8),
-  flexGrow: 1,
   width: "100%",
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(3),
@@ -56,15 +55,17 @@ export default function NavBar() {
             alt="Your logo"
             src="https://www.atinks.com/wp-content/uploads/2017/10/A.T-inks-logo-600-DPI-1-e1545645137933.png"
           />
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon color="disabled" />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+          <Box sx={{ marginLeft: 20, flexGrow: 1 }}>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon color="disabled" />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+              />
+            </Search>
+          </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: "flex" }}>
             <Button
