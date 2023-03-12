@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import { Button, InputLabel } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import helpers from "../../helper";
+import helpers from "../helper";
 
 const { getInputField } = helpers;
 
