@@ -1,17 +1,8 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
+import { Box, Typography } from "@mui/material";
 
 export default function TabPanel(props) {
-  console.log("props", props);
   const { children, value, index, ...other } = props;
 
   return (

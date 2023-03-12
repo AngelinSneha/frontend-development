@@ -1,57 +1,29 @@
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import PeopleIcon from "@mui/icons-material/People";
-import HandshakeIcon from "@mui/icons-material/Handshake";
-import CategoryIcon from "@mui/icons-material/Category";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-import InfoIcon from "@mui/icons-material/Info";
-import PaymentsIcon from "@mui/icons-material/Payments";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { TextField } from "@mui/material";
 
-const sideNavValues = [
-  { name: "Dashboard", icon: <DashboardIcon /> },
-  { name: "Orders", icon: <ShoppingCartIcon /> },
-  { name: "Team Members", icon: <PeopleIcon /> },
-  { name: "Partners", icon: <HandshakeIcon /> },
-  { name: "Product Listings", icon: <CategoryIcon /> },
-  { name: "Award & Honors", icon: <EmojiEventsIcon /> },
-  { name: "About Us", icon: <InfoIcon /> },
-  { name: "Payment Info", icon: <PaymentsIcon /> },
-];
-
-const contactInfo = [
-  {
-    team: "Sales Team",
-    email: ["salesteam@br.in", "salesteam2@br.in"],
-    phone: ["+91 8765434701", "8765434702"],
-  },
-  {
-    team: "Marketing Team",
-    email: ["salesteam@br.in", "salesteam2@br.in"],
-    phone: ["+91 8765434701", "8765434702"],
-  },
-  {
-    team: "HR Team",
-    email: ["salesteam@br.in", "salesteam2@br.in"],
-    phone: ["+91 8765434701", "8765434702"],
-  },
-  {
-    team: "Engineering Team",
-    email: ["salesteam@br.in", "salesteam2@br.in"],
-    phone: ["+91 8765434701", "8765434702"],
-  },
-  {
-    team: "Operations Team",
-    email: ["salesteam@br.in", "salesteam2@br.in"],
-    phone: ["+91 8765434701", "8765434702"],
-  },
-  {
-    team: "DevOps Team",
-    email: ["salesteam@br.in", "salesteam2@br.in"],
-    phone: ["+91 8765434701", "8765434702"],
-  },
-];
-
-export default {
-  sideNavValues,
-  contactInfo,
+const getInputField = (length, value, setValue, placeholder) => {
+  const res = [];
+  for (let i = 0; i <= length; i++) {
+    res.push(
+      <TextField
+        key={i}
+        placeholder={placeholder}
+        variant="outlined"
+        sx={{
+          backgroundColor: "#f2f2f2;",
+          border: "none",
+          width: "100%",
+          marginBottom: 2,
+        }}
+        onChange={(e) => {
+          value[i] = e.target.value;
+          setValue([...value]);
+        }}
+      />
+    );
+  }
+  return res;
 };
+
+const helpers = { getInputField };
+
+export default helpers;
