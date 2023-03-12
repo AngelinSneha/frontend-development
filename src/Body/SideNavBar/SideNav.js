@@ -9,7 +9,7 @@ import {
   CardContent,
 } from "@mui/material";
 import ContactSupportIcon from "@mui/icons-material/ContactSupport";
-import constant from "../../constants";
+import constant from "../constants";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 const { sideNavValues } = constant;

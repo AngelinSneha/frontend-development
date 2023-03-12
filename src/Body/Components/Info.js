@@ -12,7 +12,7 @@ import ContactsIcon from "@mui/icons-material/Contacts";
 import EditIcon from "@mui/icons-material/Edit";
 import EmailIcon from "@mui/icons-material/Email";
 import CallIcon from "@mui/icons-material/Call";
-import constant from "../../constants";
+import constant from "../constants";
 import ContactTab from "./ContactTab";
 import Swipeable from "./Swipeable";
 import Address from "./Cards/Address";

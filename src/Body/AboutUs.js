@@ -5,7 +5,7 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import TabPanel from "./Components/TabPanel";
 import Info from "./Components/Info";
 import Swipeable from "./Components/Swipeable";
-import constant from "../constants";
+import constant from "./constants";
 import CompanyDescriptionForm from "./Components/CompanyDescriptionForm";
 
 const { companyInformation, getTabs } = constant;

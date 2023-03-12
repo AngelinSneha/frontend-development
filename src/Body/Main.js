@@ -2,7 +2,7 @@ import * as React from "react";
 import { Box, Typography } from "@mui/material";
 import SideNav from "./SideNavBar/SideNav";
 import AboutUs from "./AboutUs";
-import constant from "../constants";
+import constant from "./constants";
 
 const { sideNavValues } = constant;
 
