@@ -116,7 +116,11 @@ export default function SideNav({ value = 0, handleChange = () => {} }) {
               <Typography variant="h6" component="div">
                 Need Help?
               </Typography>
-              <Typography sx={{ fontSize: "12px", lineHeight: 0 }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{ fontSize: "12px" }}
+              >
                 our support team is at your dispossal
               </Typography>
             </Box>

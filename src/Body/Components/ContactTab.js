@@ -69,6 +69,7 @@ export default function ContactTab({
                         sx={{ paddingRight: 1, marginTop: 1 }}
                       />
                       {details.team}
+                      {console.log("viewContacts", viewContacts)}
                       {!viewContacts && (
                         <>
                           <IconButton
